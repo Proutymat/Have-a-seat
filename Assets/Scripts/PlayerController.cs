@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    [Title("Parameters")]
+    [Title("Settings")]
     [Title("Speed", horizontalLine: false)]
     [SerializeField] private float _walkSpeed = 5f;
     [SerializeField] private float _runSpeed = 8f;
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _gravity = -12f;
     [SerializeField] private float _initialFallVelocity = -2;
     
-    [Title("Set in inspector")]
+    [Title("References")]
     [SerializeField] private Transform _cameraTransform;
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private InputActionReference _moveAction;
