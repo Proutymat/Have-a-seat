@@ -9,6 +9,9 @@ public class HeadbobController : MonoBehaviour
     [SerializeField] private float _runMultiplier = 1.5f;
     [SerializeField] private float _smoothSpeed = 10f;
     
+    [SerializeField] private float _landingShakeAmount = 0.1f;
+    [SerializeField] private float _landingShakeDuration = 0.2f;
+    
     [Title("References")]
     [SerializeField] private CharacterController _controller;
     [SerializeField] private Transform _camera;

@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     [Title("Settings")]
     [Title("Speed", horizontalLine: false)]
-    [SerializeField] private float _walkSpeed = 5f;
-    [SerializeField] private float _runSpeed = 8f;
+    [SerializeField] private float _walkSpeed = 3f;
+    [SerializeField] private float _runSpeed = 5f;
     [Title("Acceleration", horizontalLine: false)]
     [SerializeField] private float _acceleration = 10f;
     [SerializeField] private float _deceleration = 15f;
@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpForce = 7f;
     [SerializeField] private float _gravity = -12f;
     [SerializeField] private float _initialFallVelocity = -2;
+    
     
     [Title("References")]
     [SerializeField] private Transform _cameraTransform;
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
         if (_isGrounded)
         {
             _verticalVelocity = _jumpForce;
+            GamepadVibration.Vibrate(0.2f, 0.3f, 0.1f);
         }
     }
 
