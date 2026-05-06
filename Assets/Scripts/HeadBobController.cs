@@ -6,11 +6,8 @@ public class HeadbobController : MonoBehaviour
     [Title("Settings")]
     [SerializeField] private float _bobFrequency = 3f;
     [SerializeField] private float _bobAmplitude = 0.05f;
-    [SerializeField] private float _runMultiplier = 1.5f;
+    [SerializeField] private float _runMultiplier = 1.2f;
     [SerializeField] private float _smoothSpeed = 10f;
-    
-    [SerializeField] private float _landingShakeAmount = 0.1f;
-    [SerializeField] private float _landingShakeDuration = 0.2f;
     
     [Title("References")]
     [SerializeField] private CharacterController _controller;
@@ -39,6 +36,9 @@ public class HeadbobController : MonoBehaviour
         }
 
         float speedFactor = _controller.velocity.magnitude;
+
+        float multiplier = speedFactor > 6f ? _runMultiplier : 1f;
+        _timer += Time.deltaTime * _bobFrequency * multiplier;
 
         _timer += Time.deltaTime * _bobFrequency * speedFactor;
 

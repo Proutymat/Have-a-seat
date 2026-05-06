@@ -111,6 +111,7 @@ MonoBehaviour:
   _jumpForce: 3
   _gravity: -12
   _initialFallVelocity: -2
+  _minFallSpeedForVibration: 6
   _cameraTransform: {fileID: 1751411531701155477}
   _characterController: {fileID: 8987166910669420497}
   _moveAction: {fileID: 0}
@@ -130,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bobFrequency: 2
   _bobAmplitude: 0.05
-  _runMultiplier: 1.5
+  _runMultiplier: 1.2
   _smoothSpeed: 10
   _controller: {fileID: 8987166910669420497}
   _camera: {fileID: 6354472349982646286}

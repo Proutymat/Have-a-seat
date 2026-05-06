@@ -9,13 +9,18 @@ public class PlayerController : MonoBehaviour
     [Title("Speed", horizontalLine: false)]
     [SerializeField] private float _walkSpeed = 3f;
     [SerializeField] private float _runSpeed = 5f;
+    
     [Title("Acceleration", horizontalLine: false)]
     [SerializeField] private float _acceleration = 10f;
     [SerializeField] private float _deceleration = 15f;
+    
     [Title("Jump and fall", horizontalLine: false)]
     [SerializeField] private float _jumpForce = 7f;
     [SerializeField] private float _gravity = -12f;
     [SerializeField] private float _initialFallVelocity = -2;
+    
+    [Title("Landing Vibration")]
+    [SerializeField] private float _minFallSpeedForVibration = 6f;
     
     
     [Title("References")]
@@ -31,6 +36,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 _currentVelocity;
     private bool _isGrounded;
     private bool _isRunning;
+    private bool _wasGrounded;
+    private float _maxFallSpeed;
     
     private void OnEnable()
     {
@@ -106,11 +113,39 @@ public class PlayerController : MonoBehaviour
             _verticalVelocity = _initialFallVelocity;
         }
     }
+    
+    private void HandleLandingVibration()
+    {
+        // track max fall speed while airborne
+        if (!_isGrounded)
+        {
+            if (_characterController.velocity.y < _maxFallSpeed)
+            {
+                _maxFallSpeed = _characterController.velocity.y;
+            }
+        }
+
+        // landing detection
+        if (!_wasGrounded && _isGrounded)
+        {
+            float fallSpeed = Mathf.Abs(_maxFallSpeed);
+
+            if (fallSpeed > _minFallSpeedForVibration)
+            {
+                GamepadVibration.Vibrate(0.5f, 0.5f, 0.15f);
+            }
+
+            _maxFallSpeed = 0f;
+        }
+
+        _wasGrounded = _isGrounded;
+    }
 
     private void Update()
     {
         _isGrounded =_characterController.isGrounded;
         HandleGravity();
         HandleMovement();
+        HandleLandingVibration();
     }
 }
