@@ -2,7 +2,7 @@ using Sirenix.OdinInspector;
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class ToiletInteractable : MonoBehaviour
+public class ToiletInteractable : MonoBehaviour, IInteractable
 {
     [Title("References")]
     [SerializeField] private ToiletSceneController _scene;
