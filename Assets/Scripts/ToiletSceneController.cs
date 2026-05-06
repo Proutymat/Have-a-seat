@@ -2,34 +2,46 @@ using UnityEngine;
 
 public class ToiletSceneController : MonoBehaviour
 {
-    public ToiletState State { get; private set; } = ToiletState.Empty;
-
-    public void UseToilet()
+    
+    public ToiletState State { get; private set; } = ToiletState.Free;
+    public int PaperUsedThisPoop { get; private set; } = 0;
+    public int PaperRemaining { get; private set; } = 5;
+    
+    
+    public void ConsumePaper()
     {
-        if (State == ToiletState.Empty)
-            State = ToiletState.UsedToilet;
+        PaperUsedThisPoop += 1;
+        PaperRemaining -= 1;
     }
 
-    public void UsePaper()
+    public void TakeBroom()
     {
-        if (State == ToiletState.UsedToilet)
-            State = ToiletState.PaperInside;
+        
     }
 
-    public void Clean()
+    public void PutPaperOnToilet()
     {
-        if (State == ToiletState.PaperInside)
-            State = ToiletState.Wiped;
+        State = State == ToiletState.Free ? ToiletState.Carpeted : ToiletState.VeryCarpeted;
+    }
+    
+    public void SitOnToilet()
+    {
+        State = ToiletState.InUse;
     }
 
     public void Flush()
     {
-        if (State == ToiletState.Wiped)
-            State = ToiletState.Finished;
+        State = ToiletState.Dirty;
     }
 
-    public bool CanUseToilet => State == ToiletState.Empty;
-    public bool CanUsePaper => State == ToiletState.UsedToilet;
-    public bool CanClean => State == ToiletState.PaperInside;
-    public bool CanFlush => State == ToiletState.Wiped;
+    public void CleanToilet()
+    {
+        State = ToiletState.Cleaned;
+    }
+
+    public void UseSink()
+    {
+        
+    }
+    
 }

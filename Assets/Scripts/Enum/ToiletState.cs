@@ -1,9 +1,11 @@
 public enum ToiletState
 {
-    Empty,
-    UsedToilet,
-    PaperInside,
-    Wiped,
+    Free,
+    Carpeted,
+    VeryCarpeted,
+    InUse,
+    Full,
+    Dirty,
     Cleaned,
-    Finished
+    Clogged
 }

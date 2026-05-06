@@ -6,8 +6,8 @@ public class PauseJobInteractable : MonoBehaviour, IInteractable
 {
     [Title("References")]
     //[SerializeField] private DesktopSceneController _controller;
-    [SerializeField] private CinemachineCamera _chairCamera;
     [SerializeField] private PlayerStateController _playerStateController;
+    [SerializeField] private CinemachineCamera _chairCamera;
     
     public void Interact()
     {

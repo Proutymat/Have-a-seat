@@ -15,34 +15,67 @@ public class PlayerStateController : MonoBehaviour
     
     public void EnterChair(CinemachineCamera chairCamera)
     {
+        State = PlayerState.Sitting;
+        _playerController.enabled = false;
+        
+        // Reset camera pan tilt
         var panTilt = chairCamera.GetComponent<CinemachinePanTilt>();
         panTilt.PanAxis.Value = 0f;
         panTilt.TiltAxis.Value = 0f;
-        
-        State = PlayerState.Sitting;
 
-        _playerController.enabled = false;
-
+        // Set cameras
         _currentInteractionCamera = chairCamera;
         _playerInteraction.Camera = chairCamera;
 
+        // Set priority
+        _currentInteractionCamera.Priority = 10;
         _playerCamera.Priority = 0;
-        chairCamera.Priority = 10;
     }
 
     public void ExitChair(CinemachineCamera chairCamera)
     {
         State = PlayerState.Free;
-
         _playerController.enabled = true;
 
+        // Set priority
+        _currentInteractionCamera.Priority = 0;
+        _playerCamera.Priority = 10;
+        
+        // Set cameras
         _currentInteractionCamera = _playerCamera;
         _playerInteraction.Camera = _playerCamera;
+    }
 
-        if (_currentInteractionCamera != null)
-            _currentInteractionCamera.Priority = 0;
+    public void SitOnToilet(CinemachineCamera toiletCamera)
+    {
+        State = PlayerState.Sitting;
+        _playerController.enabled = false;
+        
+        // Reset camera pan tilt
+        var panTilt = toiletCamera.GetComponent<CinemachinePanTilt>();
+        panTilt.PanAxis.Value = 0f;
+        panTilt.TiltAxis.Value = 0f;
 
+        // Set cameras
+        _currentInteractionCamera = toiletCamera;
+        _playerInteraction.Camera = toiletCamera;
+
+        // Set priority
+        _playerCamera.Priority = 0;
+        toiletCamera.Priority = 10;
+    }
+
+    public void ExitToilet(CinemachineCamera toiletCamera)
+    {
+        State = PlayerState.Free;
+        _playerController.enabled = true;
+
+        // Set priority
         _playerCamera.Priority = 10;
-        chairCamera.Priority = 0;
+        _currentInteractionCamera.Priority = 0;
+
+        // Set cameras
+        _currentInteractionCamera = _playerCamera;
+        _playerInteraction.Camera = _playerCamera;
     }
 }
