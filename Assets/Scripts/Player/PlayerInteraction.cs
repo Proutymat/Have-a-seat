@@ -14,6 +14,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private CanvasGroup _interactTextCanvasGroup;
 
     private IInteractable _current;
+    
+    public CinemachineCamera Camera { set => _camera = value; }
 
     private void OnEnable()
     {
@@ -38,6 +40,7 @@ public class PlayerInteraction : MonoBehaviour
             if (interactable != null && interactable.CanInteract())
             {
                 _current = interactable;
+                Debug.Log("Interacting with " + interactable.GetType().Name);
             }
         }
 

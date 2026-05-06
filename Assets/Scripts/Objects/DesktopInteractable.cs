@@ -1,8 +1,11 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class DesktopInteractable : MonoBehaviour, IInteractable
 {
-    [SerializeField] private DesktopSceneController _controller;
+    [Title("References")]
+    //[SerializeField] private DesktopSceneController _controller;
+    [SerializeField] private PlayerStateController _playerStateController;
 
     public void Interact()
     {

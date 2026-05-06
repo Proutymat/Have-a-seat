@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerController: {fileID: 5646310522042704725}
+  _playerInteraction: {fileID: 7700375237618226034}
   _playerCamera: {fileID: 1746050903662656507}
 --- !u!1 &2828446439486153931
 GameObject:
