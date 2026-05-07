@@ -20,8 +20,8 @@ public class PlayerStateController : MonoBehaviour
         
         // Reset camera pan tilt
         var panTilt = chairCamera.GetComponent<CinemachinePanTilt>();
-        panTilt.PanAxis.Value = 0f;
-        panTilt.TiltAxis.Value = 0f;
+        panTilt.PanAxis.Value = panTilt.PanAxis.Center;
+        panTilt.TiltAxis.Value = panTilt.TiltAxis.Center;
 
         // Set cameras
         _currentInteractionCamera = chairCamera;
@@ -53,8 +53,8 @@ public class PlayerStateController : MonoBehaviour
         
         // Reset camera pan tilt
         var panTilt = toiletCamera.GetComponent<CinemachinePanTilt>();
-        panTilt.PanAxis.Value = 0f;
-        panTilt.TiltAxis.Value = 0f;
+        panTilt.PanAxis.Value = panTilt.PanAxis.Center;
+        panTilt.TiltAxis.Value = panTilt.TiltAxis.Center;
 
         // Set cameras
         _currentInteractionCamera = toiletCamera;
