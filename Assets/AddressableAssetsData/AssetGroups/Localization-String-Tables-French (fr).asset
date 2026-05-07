@@ -15,18 +15,18 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-French (fr)
   m_GUID: 9268eb88caf088c4bae40fc7fe3f8474
   m_SerializeEntries:
+  - m_GUID: 7d6648f4787c6e6459bc3fc7cc9e00d5
+    m_Address: BossDialogueTable_fr
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-fr
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c0566efbb9ed14047956dc01282e5908
     m_Address: MenusTable_fr
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-fr
     - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fe53c991043134f4a892cbaf69a65245
-    m_Address: DialoguesTable_fr
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-fr
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 46231b22c890a43438953db03ccfa96d, type: 2}

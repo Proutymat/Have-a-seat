@@ -15,8 +15,8 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-English (en)
   m_GUID: 7c4e6a90ae610684394eadd54e4a4b14
   m_SerializeEntries:
-  - m_GUID: 39479e9b13e21204db3ddd7661a3a26a
-    m_Address: DialoguesTable_en
+  - m_GUID: 1fc436e4d5b32c84ba0872bcba29a00d
+    m_Address: BossDialogueTable_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

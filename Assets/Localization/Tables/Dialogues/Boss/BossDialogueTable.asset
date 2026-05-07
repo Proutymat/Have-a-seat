@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
-  m_Name: DialoguesTable
+  m_Name: BossDialogueTable
   m_EditorClassIdentifier: 
-  m_SharedTableData: {fileID: 11400000, guid: 9a5e11401a196df4ab8cb8360c565b6b, type: 2}
+  m_SharedTableData: {fileID: 11400000, guid: efea347bc2a989d4797a75117d8fba68, type: 2}
   m_Tables:
-  - {fileID: 11400000, guid: 39479e9b13e21204db3ddd7661a3a26a, type: 2}
-  - {fileID: 11400000, guid: fe53c991043134f4a892cbaf69a65245, type: 2}
+  - {fileID: 11400000, guid: 1fc436e4d5b32c84ba0872bcba29a00d, type: 2}
+  - {fileID: 11400000, guid: 7d6648f4787c6e6459bc3fc7cc9e00d5, type: 2}
   m_Extensions: []
   m_Group: String Table
   references:

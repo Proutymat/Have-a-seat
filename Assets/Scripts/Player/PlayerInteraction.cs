@@ -29,6 +29,13 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
+        if (DialogueUI.Instance != null && DialogueUI.Instance.IsOpen)
+        {
+            _current = null;
+            _interactTextCanvasGroup.alpha = 0;
+            return;
+        }
+        
         Ray ray = new Ray(_camera.transform.position, _camera.transform.forward);
 
         _current = null;
@@ -40,7 +47,6 @@ public class PlayerInteraction : MonoBehaviour
             if (interactable != null && interactable.CanInteract())
             {
                 _current = interactable;
-                Debug.Log("Interacting with " + interactable.GetType().Name);
             }
         }
 

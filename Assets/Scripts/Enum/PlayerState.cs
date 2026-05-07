@@ -1,5 +1,6 @@
 public enum PlayerState
 {
     Free,
-    Sitting
+    Sitting,
+    Dialogue
 }

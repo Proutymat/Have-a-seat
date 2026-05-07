@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b178c2afc1b27b4fb98df60fbf15054, type: 3}
+  m_Name: BossDialogue1
+  m_EditorClassIdentifier: 
+  Stage: 0
+  Lines:
+  - text:
+      m_TableReference:
+        m_TableCollectionName: GUID:efea347bc2a989d4797a75117d8fba68
+      m_TableEntryReference:
+        m_KeyId: 1297827233792
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    enableShake: 0
+    shakeIntensity: 0.2
+  - text:
+      m_TableReference:
+        m_TableCollectionName: GUID:efea347bc2a989d4797a75117d8fba68
+      m_TableEntryReference:
+        m_KeyId: 18229938880512
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    enableShake: 0
+    shakeIntensity: 0.2
+  - text:
+      m_TableReference:
+        m_TableCollectionName: GUID:efea347bc2a989d4797a75117d8fba68
+      m_TableEntryReference:
+        m_KeyId: 1415028670464
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    enableShake: 0
+    shakeIntensity: 0.2
+  - text:
+      m_TableReference:
+        m_TableCollectionName: GUID:efea347bc2a989d4797a75117d8fba68
+      m_TableEntryReference:
+        m_KeyId: 56604653780992
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    enableShake: 1
+    shakeIntensity: 5
+  references:
+    version: 2
+    RefIds: []

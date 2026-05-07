@@ -20,8 +20,9 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9a5e11401a196df4ab8cb8360c565b6b
-    m_Address: Assets/Localization/Tables/Dialogues/DialoguesTable Shared Data.asset
+  - m_GUID: efea347bc2a989d4797a75117d8fba68
+    m_Address: Assets/Localization/Tables/Dialogues/Boss/BossDialogueTable Shared
+      Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
