@@ -30,7 +30,6 @@ public class DialogueShake : MonoBehaviour
     {
         _enabledShake = enabled;
         _amplitude = amplitude;
-        Debug.Log(_enabledShake ? "Enabled" : "Disabled");
     }
 
     private void OnCharacterRevealed(char c)
@@ -53,7 +52,6 @@ public class DialogueShake : MonoBehaviour
 
         if (_shakeTimer > 0)
         {
-            Debug.Log(_shakeTimer);
             Vector2 offset = Random.insideUnitCircle * _amplitude;
 
             _text.localPosition = _originalPos + (Vector3)offset;

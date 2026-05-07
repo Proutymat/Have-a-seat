@@ -169,6 +169,7 @@ MonoBehaviour:
   _playerController: {fileID: 5646310522042704725}
   _playerInteraction: {fileID: 7700375237618226034}
   _playerCamera: {fileID: 1746050903662656507}
+  _panTilt: {fileID: 3078177613884656806}
 --- !u!1 &2828446439486153931
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2828446439486153931}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.014294355, y: 0.0668509, z: -0.0009578316, w: 0.99766016}
+  m_LocalRotation: {x: 0.014715209, y: -0.053105894, z: 0.00078265386, w: 0.99848014}
   m_LocalPosition: {x: 0, y: 0.5999999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -261,7 +262,7 @@ MonoBehaviour:
   ReferenceFrame: 0
   RecenterTarget: 0
   PanAxis:
-    Value: 7.667054
+    Value: 0
     Center: 0
     Range: {x: -180, y: 180}
     Wrap: 1
@@ -271,7 +272,7 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   TiltAxis:
-    Value: 1.6417418
+    Value: 0
     Center: 0
     Range: {x: -70, y: 70}
     Wrap: 0

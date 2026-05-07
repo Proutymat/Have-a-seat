@@ -148,4 +148,11 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         HandleLandingVibration();
     }
+    
+    public void StopMovement()
+    {
+        _moveInput = Vector2.zero;
+        _characterController.Move(Vector3.zero);
+        _currentVelocity = Vector3.zero;
+    }
 }

@@ -16,6 +16,7 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private TypewriterEffect _typewriter;
     [SerializeField] private InputActionReference _interactAction;
     [SerializeField] private DialogueShake _shake;
+    [SerializeField] private PlayerStateController _player;
 
     private DialogueEntry _currentDialogue;
 
@@ -105,7 +106,7 @@ public class DialogueUI : MonoBehaviour
     private void Close()
     {
         _isOpen = false;
-
         _panel.SetActive(false);
+        _player.ExitDialogue();
     }
 }
