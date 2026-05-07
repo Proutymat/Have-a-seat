@@ -78,4 +78,9 @@ public class PlayerStateController : MonoBehaviour
         _currentInteractionCamera = _playerCamera;
         _playerInteraction.Camera = _playerCamera;
     }
+
+    public void EnterDialogue()
+    {
+        State = PlayerState.Dialogue;
+    }
 }

@@ -3,7 +3,6 @@ using System.Collections;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 [RequireComponent(typeof(TMP_Text))]
 public class TypewriterEffect : MonoBehaviour
@@ -11,8 +10,7 @@ public class TypewriterEffect : MonoBehaviour
     [Title("Settings")]
     [SerializeField] private float charactersPerSecond = 20;
     [SerializeField] private float interpunctuationDelay = 0.5f;
-    [SerializeField] [Min(1)] private int skipSpeedup = 5;
-    [SerializeField] [Range(0.1f, 0.5f)] private float sendDoneDelay = 0.25f;
+    [SerializeField, Range(0.1f, 0.5f)] private float sendDoneDelay = 0.25f;
     
     private TMP_Text _textBox;
 
@@ -23,15 +21,14 @@ public class TypewriterEffect : MonoBehaviour
 
     private WaitForSeconds _simpleDelay;
     private WaitForSeconds _interpunctuationDelay;
-
-    // Skipping Functionality
-    public bool CurrentlySkipping { get; private set; }
-    private WaitForSeconds _skipDelay;
-    private bool quickSkip;
+    
+    public bool IsTyping => !_readyForNewText;
     
     private WaitForSeconds _textboxFullEventDelay;
     public static event Action CompleteTextRevealed;
     public static event Action<char> CharacterRevealed;
+    
+    public float CharacterDelay => 1f / charactersPerSecond;
 
 
     private void Awake()
@@ -40,55 +37,17 @@ public class TypewriterEffect : MonoBehaviour
 
         _simpleDelay = new WaitForSeconds(1 / charactersPerSecond);
         _interpunctuationDelay = new WaitForSeconds(interpunctuationDelay);
-
-        _skipDelay = new WaitForSeconds(1 / (charactersPerSecond * skipSpeedup));
         _textboxFullEventDelay = new WaitForSeconds(sendDoneDelay);
     }
-
-    private void OnEnable()
+    
+    public void Play()
     {
-        TMPro_EventManager.TEXT_CHANGED_EVENT.Add(PrepareForNewText);
-    }
-
-    private void OnDisable()
-    {
-        TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(PrepareForNewText);
-    }
-
-    #region Skipfunctionality
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (_textBox.maxVisibleCharacters != _textBox.textInfo.characterCount - 1)
-                Skip();
-        }
-    }
-
-    // Example for how to implement it in the New Input system
-    // You'd have to use a PlayerController component on this gameobject and write the function's name as On[Input Action name] for this to work.
-    // In this case, my Input Action is called "RightMouseClick". But: There are a ton of ways to implement checking if a button
-    // has been pressed in this system. Go watch Piti's video on the different ways of utilizing the new input system: https://www.youtube.com/watch?v=Wo6TarvTL5Q
-
-    // private void OnRightMouseClick()
-    // {
-    //     if (_textBox.maxVisibleCharacters != _textBox.textInfo.characterCount - 1)
-    //         Skip();
-    // }
-
-    #endregion
-
-    private void PrepareForNewText(Object obj)
-    {
-        if (obj != _textBox || !_readyForNewText || _textBox.maxVisibleCharacters >= _textBox.textInfo.characterCount)
-            return;
-
-        CurrentlySkipping = false;
         _readyForNewText = false;
 
         if (_typewriterCoroutine != null)
             StopCoroutine(_typewriterCoroutine);
+
+        _textBox.ForceMeshUpdate();
 
         _textBox.maxVisibleCharacters = 0;
         _currentVisibleCharacterIndex = 0;
@@ -117,15 +76,14 @@ public class TypewriterEffect : MonoBehaviour
 
             _textBox.maxVisibleCharacters++;
 
-            if (!CurrentlySkipping &&
-                (character == '?' || character == '.' || character == ',' || character == ':' ||
+            if ((character == '?' || character == '.' || character == ',' || character == ':' ||
                  character == ';' || character == '!' || character == '-'))
             {
                 yield return _interpunctuationDelay;
             }
             else
             {
-                yield return CurrentlySkipping ? _skipDelay : _simpleDelay;
+                yield return _simpleDelay;
             }
 
             CharacterRevealed?.Invoke(character);
@@ -133,28 +91,17 @@ public class TypewriterEffect : MonoBehaviour
         }
     }
 
-    private void Skip(bool quickSkipNeeded = false)
+    public void CompleteInstantly()
     {
-        if (CurrentlySkipping)
-            return;
+        if (_typewriterCoroutine != null)
+            StopCoroutine(_typewriterCoroutine);
 
-        CurrentlySkipping = true;
+        _currentVisibleCharacterIndex = _textBox.textInfo.characterCount;
 
-        if (!quickSkip || !quickSkipNeeded)
-        {
-            StartCoroutine(SkipSpeedupReset());
-            return;
-        }
-
-        StopCoroutine(_typewriterCoroutine);
         _textBox.maxVisibleCharacters = _textBox.textInfo.characterCount;
-        _readyForNewText = true;
-        CompleteTextRevealed?.Invoke();
-    }
 
-    private IEnumerator SkipSpeedupReset()
-    {
-        yield return new WaitUntil(() => _textBox.maxVisibleCharacters == _textBox.textInfo.characterCount - 1);
-        CurrentlySkipping = false;
+        _readyForNewText = true;
+
+        CompleteTextRevealed?.Invoke();
     }
 }
