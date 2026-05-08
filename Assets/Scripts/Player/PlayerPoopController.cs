@@ -10,15 +10,15 @@ public class PlayerPoopController : MonoBehaviour
     [SerializeField] private PlayerStateController _player;
     [SerializeField] private InputActionReference _poopAction;
     [SerializeField] private CanvasGroup _poopText;
+    [SerializeField] private float _poopTime = 6f;
+    [SerializeField] private float _waitTimeAfterPoop = 3f;
 
-    private float _poopGauge;
     private bool _isPooping;
-    private float _wipeTimer;
+    private float _timer;
 
     public void StartPooping()
     {
-        _poopGauge = 10;
-        _wipeTimer = 5;
+        _timer = 0;
         _scene.PaperUsedThisPoop = 0;
     }
 
@@ -35,41 +35,52 @@ public class PlayerPoopController : MonoBehaviour
             _poopText.alpha = 1;
         }
     }
+
+    private void PoopLogic()
+    {
+        HandlePoopAction();
+
+        Debug.Log("timer = " + _timer);
+        
+        if (!_isPooping)
+        {
+            _timer = _timer < 0 ? 0 : _timer - Time.deltaTime * 0.5f;
+            return;
+        }
+        
+        _timer +=  Time.deltaTime;
+        float completion = _timer / _poopTime;
+        GamepadVibration.Vibrate(completion, completion, 0.1f);
+        
+        // Finished pooping
+        if (_timer > _poopTime)
+        {
+            _player.State = PlayerState.Wipping;
+            _timer = 0;
+            Debug.Log("PlayerState = "  + _player.State);
+            Debug.Log("ToiletState = "  + _scene.State);
+        }
+    }
+
+    private void WipeLogic()
+    {
+        _timer += Time.deltaTime;
+        
+        Debug.Log("timer = " + _timer);
+        
+        // Finish wiping
+        if (_timer > _waitTimeAfterPoop)
+        {
+            _player.ExitToilet();
+        }    
+    }
     
     
     private void Update()
     {
-        // POOPING
-        if (_player.State < PlayerState.Pooping) return;
-
-        HandlePoopAction();
-
-        if (!_isPooping) return;
-
-        _poopGauge -= Time.deltaTime;
-        
-        Debug.Log("poop gauge = " + _poopGauge);
-        
-        // Finished pooping
-        if (_poopGauge <= 0 && _player.State == PlayerState.Pooping)
-        {
-            _player.State = PlayerState.Wipping;
-            Debug.Log("PlayerState = "  + _player.State);
-            Debug.Log("ToiletState = "  + _scene.State);
-        }
-        
-        
-        // WIPING
-        if (_player.State != PlayerState.Wipping) return;
-
-        _wipeTimer -= Time.deltaTime;
-        
-        Debug.Log("wipe timer = " + _wipeTimer);
-        
-        // Finish wiping
-        if (_wipeTimer <= 0)
-        {
-            _player.ExitToilet();
-        }     
+        if (_player.State == PlayerState.Pooping)
+            PoopLogic();
+        else if (_player.State == PlayerState.Wipping)
+            WipeLogic();
     }
 }

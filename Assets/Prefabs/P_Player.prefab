@@ -184,9 +184,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f3341308e27ac4e840276819c037be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poopAction: {fileID: 0}
+  _scene: {fileID: 0}
   _player: {fileID: 1898580511897741419}
+  _poopAction: {fileID: 0}
   _poopText: {fileID: 0}
+  _poopTime: 6
+  _waitTimeAfterPoop: 3
 --- !u!1 &2828446439486153931
 GameObject:
   m_ObjectHideFlags: 0
