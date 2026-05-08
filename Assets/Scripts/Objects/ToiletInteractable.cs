@@ -19,13 +19,14 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
             _hand.DropObject();
         }
         // Hand is free
-        if (_hand.State == HandState.Free)
+        else if (_hand.State == HandState.Free)
         {
             // Sit on toilet
-            if (_scene.State == ToiletState.Free)
+            if (_scene.State == ToiletState.Free || _scene.State == ToiletState.Carpeted || _scene.State == ToiletState.VeryCarpeted)
             {
                 _player.SitOnToilet(_toiletCamera);
                 _scene.SitOnToilet();
+                
             }
             // Flush the toilet
             else if (_scene.State == ToiletState.Full)
@@ -43,8 +44,9 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
 
     public bool CanInteract()
     {
-        return _player.State == PlayerState.Free && 
-               (_hand.State == HandState.ToiletPaper || _hand.State == HandState.ToiletBroom || _hand.State == HandState.Free) &&
-               (_scene.State ==  ToiletState.Free || _scene.State == ToiletState.Carpeted || _scene.State == ToiletState.VeryCarpeted || _scene.State == ToiletState.Full);
+        return (_player.State == PlayerState.Free && 
+               (_hand.State == HandState.ToiletPaper || _hand.State == HandState.Free) &&
+               (_scene.State ==  ToiletState.Free || _scene.State == ToiletState.Carpeted || _scene.State == ToiletState.VeryCarpeted || _scene.State == ToiletState.Full))
+            || _hand.State == HandState.ToiletBroom ;
     }
 }
