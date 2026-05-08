@@ -2520,6 +2520,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9017084064627785485, guid: 356ca3d0bf1284c41b97870c1851a5f9, type: 3}
+      propertyPath: _scene
+      value: 
+      objectReference: {fileID: 567728603}
+    - target: {fileID: 9017084064627785485, guid: 356ca3d0bf1284c41b97870c1851a5f9, type: 3}
       propertyPath: _poopText
       value: 
       objectReference: {fileID: 2874791030697708890}
