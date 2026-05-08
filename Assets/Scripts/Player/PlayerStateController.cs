@@ -3,11 +3,12 @@ using Unity.Cinemachine;
 
 public class PlayerStateController : MonoBehaviour
 {
-    public PlayerState State { get; private set; } = PlayerState.Free;
+    public PlayerState State { get; set; } = PlayerState.Free;
 
     [Header("References")]
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private PlayerInteraction _playerInteraction;
+    [SerializeField] private PlayerPoopController _playerPoop;
     [SerializeField] private CinemachineCamera _playerCamera;
     [SerializeField] private CinemachinePanTilt _panTilt;
     
@@ -51,8 +52,9 @@ public class PlayerStateController : MonoBehaviour
 
     public void SitOnToilet(CinemachineCamera toiletCamera)
     {
-        State = PlayerState.Sitting;
+        State = PlayerState.Pooping;
         _playerController.enabled = false;
+        _playerPoop.StartPooping();
         
         // Reset camera pan tilt
         var panTilt = toiletCamera.GetComponent<CinemachinePanTilt>();
@@ -66,9 +68,10 @@ public class PlayerStateController : MonoBehaviour
         // Set priority
         _playerCamera.Priority = 0;
         toiletCamera.Priority = 10;
+        Debug.Log("PlayerState = "  + State);
     }
 
-    public void ExitToilet(CinemachineCamera toiletCamera)
+    public void ExitToilet()
     {
         State = PlayerState.Free;
         _playerController.enabled = true;
@@ -80,6 +83,8 @@ public class PlayerStateController : MonoBehaviour
         // Set cameras
         _currentInteractionCamera = _playerCamera;
         _playerInteraction.Camera = _playerCamera;
+        Debug.Log("PlayerState = "  + State);
+
     }
 
     public void EnterDialogue(Vector3 lookPosition)

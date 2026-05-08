@@ -13,21 +13,25 @@ public class HandController : MonoBehaviour
     public void HoldToiletPaper()
     {
         State = HandState.ToiletPaper;
+        Debug.Log("HandState = "  + State);
     }
 
     public void HoldBroom()
     {
         State = HandState.ToiletBroom;
+        Debug.Log("HandState = "  + State);
     }
 
     public void DropObject()
     {
         State = HandState.Free;
+        Debug.Log("HandState = "  + State);
     }
 
     public void CleanHand()
     {
         Dirtiness = HandDirtiness.Clean;
+        Debug.Log("HandState = "  + State);
     }
 
 }

@@ -18,6 +18,6 @@ public class ToiletPaperInteractable : MonoBehaviour, IInteractable
     {
         return _scene.PaperRemaining > 0 && _scene.PaperUsedThisPoop < 2 && // Must remain toilet paper
                ((_player.State == PlayerState.Free && _hand.State == HandState.Free && (_scene.State == ToiletState.Free || _scene.State == ToiletState.Carpeted)) // Before pooping to carpet toilet
-                || (_player.State == PlayerState.Sitting && _hand.State == HandState.Free && _scene.State == ToiletState.Full)); // When you've pooped
+                || (_player.State == PlayerState.Wipping && _hand.State == HandState.Free && _scene.State == ToiletState.Full)); // When you've pooped
     }
 }
