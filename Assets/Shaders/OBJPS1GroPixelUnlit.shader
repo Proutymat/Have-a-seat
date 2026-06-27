@@ -1,4 +1,4 @@
-Shader "Custom/OBJPS1GroPixel"
+Shader "HaveASeat/OBJPS1GroPixelUnlit"
 {
 	Properties
 	{

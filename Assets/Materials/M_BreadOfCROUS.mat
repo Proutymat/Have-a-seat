@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_BreadOfCROUS
-  m_Shader: {fileID: 4800000, guid: 1af9a61f92d62ba4093eed3c79067d16, type: 3}
+  m_Shader: {fileID: 4800000, guid: b7cb15e21c661584293f328ee0f78a52, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -29,6 +29,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Metallic: 0
+    - _Smoothness: 0.5
     - _SnapResolution: 60
     m_Colors:
     - _Tint: {r: 1, g: 1, b: 1, a: 1}

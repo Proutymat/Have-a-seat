@@ -1,4 +1,4 @@
-Shader "Unlit/PostProcessGroPixel"
+Shader "HaveASeat/PostProcessGroPixel"
 {
     Properties
     {
