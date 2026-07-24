@@ -51,6 +51,7 @@ public class PlayerPoopController : MonoBehaviour
         _timer +=  Time.deltaTime;
         float completion = _timer / _poopTime;
         GamepadVibration.Vibrate(completion, completion, 0.1f);
+        // Screen shake
         
         // Finished pooping
         if (_timer > _poopTime)
